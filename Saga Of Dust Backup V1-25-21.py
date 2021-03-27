@@ -1,8 +1,7 @@
 #Saga of dust v1
-import random, time
+import random
 
 nm = str(input('Qual seu nome? '))
-time.sleep(0.5)
 print('Existem 3 aventureiros para você escolher.\n'
       'Aqui estam listados os 3 e suas estatisticas')
 print('<>'*30)
@@ -43,38 +42,7 @@ print('Atacar [A]\n', end=''
       'Correr [C]\n'
       'Se você escolher a opção correr você ira sair da partida\n')
 print(' ')
-print('Vou lhe mostrar um breve tutorial do jogo')
-print(' ')
-tt = ' '
-while tt not in 'ADC':
-    print('Atacar [A]\n'
-    'Defender [D]\n'
-    'Correr [C]\n')
-    msv = 200
-    vida = 245
-    while vida >= 1:
-        tt = str(input('Oque você deseja fazer? ')).strip().upper()[0]
-        if tt == 'C':
-            break
-        if tt == 'A' and msv >= 1 and vida >= 1:
-            jgt = random.randint(12, 56)
-            msv -= jgt
-            if msv <= 0:
-                print('O monstro está morto!')
-                print('Você ganhou!')
-                break
-            print(f'Você causou {jgt} de dano ao monstro')
-            print(f'O monstro está com {msv} de vida!\n')
-            print('Agora é a vez do monstro\n')
-            mst = random.randint(10, 35)
-            vida -= mst
-            if vida <= 0:
-                print('Você está morto!')
-                print('Você ganhou!')
-                break
-            print(f'O monstro causou {mst} de dano a você!')
-            print(f'Você está com {vida} de vida!\n')
-print(' ')
+
 esl = ' '
 while esl not in 'ABD':
     esl = str(input('Escolha qual aventureiro você deseja usar: ')).strip().upper()[0]
@@ -95,49 +63,53 @@ while esl not in 'ABD':
         print('Você escolheu o aventureiro Diego; Boa Sorte na sua aventura!')
 
 while True:
-    avt = str(input('Oque você deseja fazer? Suicidio ou Andar? ')).strip().upper()[0]
-    if avt == 'S':
-        print('Você se matou. Fim de jogo')
-        break
-    elif avt == 'A':
-            an = random.randint(1, 5)
-            if an == 2 or 4:
-                mnl = random.randint(1, 3)
-                print(f'Você achou um monstro level {mnl}')
-                if mnl == 1:
-                    msv = 200
-                    atk1 = 15
-                    atk2 = 40
-                    vida = Vida
-                elif mnl == 2:
-                    msv = 250
-                    atk1 = 25
-                    atk2 = 50
-                    vida = Vida
-                elif mnl == 3:
-                    msv = 325
-                    atk1 = 40
-                    atk2 = 80
-                    vida = Vida
-                    while msv >= 1:
-                        tt = str(input('Oque você deseja fazer? ')).strip().upper()[0]
-                        if tt == 'C':
-                            break
-                        if tt == 'A' and msv >= 1 and vida >= 1:
-                            jgt = random.randint(12, 56)
-                            msv -= jgt
-                            if msv <= 0:
-                                print('O monstro está morto!')
-                                print('Você ganhou!')
-                                break
-
-                            print(f'Você causou {jgt} de dano ao monstro')
-                            print(f'O monstro está com {msv} de vida!\n')
-                            print('Agora é a vez do monstro\n')
-                            mst = random.randint(atk1, atk2)
-                            vida -= mst
-                            if vida <= 0:
-                                print('Você está morto!')
-                                break
+    avt = ' '
+    while avt not in 'SA':
+        avt = str(input('Oque você deseja fazer? Suicidio ou Andar? ')).strip().upper()[0]
+        if avt == 'S':
+            break
+        elif avt == 'A':
+            mnl = random.randint(1, 3)
+            print(mnl)
+            print(f'Você achou um monstro level {mnl}')
+            if mnl == 1:
+                atk1 = 15
+                atk2 = 40
+                msv = 200
+            elif mnl == 2:
+                atk1 = 20
+                atk2 = 45
+                msv = 250
+            elif mnl == 3:
+                atk1 = 25
+                atk2 = 55
+                msv = 300
+            while msv >= 1:
+                tt = str(input('Oque você deseja fazer? ')).strip().upper()[0]
+                if tt == 'C':
+                    break
+                if tt == 'A' and msv >= 1 and Vida >= 1:
+                    jgt = random.randint(Atk1, Atk2)
+                    msv -= jgt
+                    if msv <= 0:
+                        print('O monstro está morto!')
+                        print('Você ganhou!')
+                        Vida = Vida
+                        break
+                    else:
+                        print(' ')
+                        print(f'Você causou {jgt} de dano ao monstro!')
+                        print(f'O monstro está com {msv} de vida!')
+                        print(' ')
+                        print('Agora é a vez do monstro!')
+                        print(' ')
+                        mst = random.randint(atk1, atk2)
+                        Vida -= mst
+                        if Vida <= 0:
                             print(f'O monstro causou {mst} de dano a você!')
-                            print(f'Você está com {vida} de vida!\n')
+                            print('Você morreu!')
+                            exit()
+                        else:
+                            print(f'O monstro causou {mst} de dano a você!')
+                            print(f'Você está com {Vida} de vida!')
+                            print(' ')
