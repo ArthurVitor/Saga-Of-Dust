@@ -50,17 +50,17 @@ esl = ' '
 while esl not in 'ABD':
     esl = str(input('Escolha qual aventureiro você deseja usar: ')).strip().upper()[0]
     if esl == 'A':
-        Vida = 247
+        Vida = 250
         Atk1 = 12
         Atk2 = 56
         print('Você escolheu o aventureiro Arthur; Boa Sorte na sua aventura!')
     elif esl == 'B':
-        Vida = 271
+        Vida = 250
         Atk1 = 10
         Atk2 = 58
         print('Você escolheu o aventureiro Bia; Boa Sorte na sua aventura!')
     elif esl == 'D':
-        Vida = 227
+        Vida = 250
         Atk1 = 10
         Atk2 = 53
         print('Você escolheu o aventureiro Diego; Boa Sorte na sua aventura!')
@@ -73,8 +73,12 @@ while True:
             print('Você escolheu se matar!')
             exit()
         elif avt == 'A':
-            mnl = random.randint(1, 3)
-            print(mnl)
+            if lvl == 0:
+                mnl = 1
+            elif lvl >= 1:
+                mnl = random.randint(1, 2)
+            elif lvl >= 3:
+                mnl = random.randint(1, 3)
             print(f'Você achou um monstro level {mnl}')
             if mnl == 1:
                 atk1 = 15
@@ -90,36 +94,35 @@ while True:
                 msv = 300
             while msv >= 1:
                 tt = str(input('Oque você deseja fazer? ')).strip().upper()[0]
+                print(' ')
                 if tt == 'C':
                     break
-                if tt == 'A' and msv >= 1 and Vida >= 1:
+                elif tt == 'A' and msv >= 1 and Vida >= 1:
                     jgt = random.randint(Atk1, Atk2)
                     msv -= jgt
                     if msv <= 0:
+                        print('O monstro morreu você ganhou!')
+                        Vida = 250
                         mk += 1
-                        print('O monstro está morto!')
-                        print('Você ganhou!')
-                        xp += random.randint(35, 70)
-                        if xp >= nes:
-                            xp = 0
+                        if mk >= 3:
                             lvl += 1
-                            nes += 10 * nes / 100
-                            print(f'Você subiu para o Level {lvl}')
-                            print(f'Você está level {lvl}')
-                            print('Você ganhou mais 10 de ataque!')
+                            print('Você ganhou mais 10 de dano! e Mais 20 de vida!')
                             Atk1 += 10
                             Atk2 += 10
-                        else:
-                            break
+                            Vida += 20
+                            print(f'Você está level {lvl}')
+                        break
                     else:
-                        print(f'Você causou {jgt} de dano ao monstro')
-                        print(f'O monstro está com {msv} de vida!\n')
-                        print('Agora é a vez do monstro\n')
-                        mst = random.randint(atk1, atk2)
-                        Vida -= mst
-                        if Vida <= 0:
-                            print('Você está morto!')
-                            exit()
-                        else:
-                            print(f'O monstro causou {mst} de dano a você!')
-                            print(f'Você está com {Vida} de vida!\n')
+                        print(f'Você causou {jgt} de dano ao monstro!')
+                        print(f'O monstro está com {msv} de vida!')
+                        print('')
+                        print('Agora é a vez do monstro! ')
+                        print('')
+                    mst = random.randint(atk1, atk2)
+                    Vida -= mst
+                    if Vida <= 0:
+                        print('Você morreu! Fim de jogo!')
+                        exit()
+                    else:
+                        print(f'O monstro causou {mst} de dano ao jogador!')
+                        print(f'O jogador está com {Vida} de vida!')
